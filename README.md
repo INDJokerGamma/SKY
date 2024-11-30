@@ -40,9 +40,9 @@
 
 | Feature        | Screenshot |
 |----------------|------------|
-| Search Weather |  ![Search](https://github.com/user-attachments/assets/486a55fd-dbb3-43e5-b404-7df561f6c08e)|
+| Search Weather |  ![Search](https://github.com/user-attachments/assets/486a55fd-dbb3-43e5-b404-7df561f6c08e) |
 
-| Rainy Weather  |  ![Rainy](https://github.com/user-attachments/assets/35f5aec9-7b03-43ce-8f89-d9732f3104ca)|
+| Rainy Weather  |  ![Rainy](https://github.com/user-attachments/assets/35f5aec9-7b03-43ce-8f89-d9732f3104ca) |
 
 ---
 
