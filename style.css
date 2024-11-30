@@ -1,16 +1,16 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Georgia, Times, 'Times New Roman';
+ margin: 0%;
+ padding: 0%;
+ font-family: 'Times New Roman', Times, serif;
+ box-sizing: border-box;   
 }
 body{
-    background: #222;
+    background: #222;   
 }
 .card{
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, #00feba, #5b8fff);
+    background: linear-gradient(135deg, #2ed6f8e7, #d7ed4b);
     color: #fff;
     margin: 100px auto 0;
     border-radius: 20px;
@@ -32,39 +32,37 @@ body{
     height: 60px;
     border-radius: 30px;
     flex: 1;
-    margin-right: 20px;
+    margin-right: 16px;
     font-size: 18px;
+}
+.city{
+    font-size: 40px;
 }
 .search button{
     border: 0;
     outline: 0;
     background: #ebfffc;
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
 }
 .search button img{
-    width: 60px;
-    height: auto;
-    position: absolute;
-    top: 140px;
-    left: 550px;
-    border-radius: 30px;
-    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #ebfffc;
 }
-.whether-icon{
+.weather-icon{
     width: 170px;
     margin-top: 30px;
-    position: absolute;
-    top: 500px;
-    left: 250px;
+    border-radius: 20px;
 }
-.whether h1{
-    font-size: 80px;
+.weather h1{
+    font-size: 50px;
     font-weight: 500;
 }
-.whether h2 {
+.wenther h2{
     font-size: 45px;
     font-weight: 400;
     margin-top: -10px;
@@ -72,7 +70,7 @@ body{
 .details{
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     padding: 0 20px;
     margin-top: 50px;
 }
@@ -82,12 +80,18 @@ body{
     text-align: left;
 }
 .col img{
-    width: 60px;
-    height: 60px;
+    width: 50px;
     margin-right: 10px;
-    border-radius: 20%;
+    border-radius: 10px;
 }
-.humidity, .wind{
-    font-size: 28px;
+.humidity, .windy{
+    font-size: 25px;
     margin-top: -6px;
+}
+.error{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
 }

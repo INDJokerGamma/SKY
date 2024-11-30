@@ -3,37 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whether App</title>
+    <title>SKY ~a Weather App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="card">
         <div class="search">
-            <input type="text" class="search-bar" placeholder="Search"
-            spellcheck="false">
-            <button><img src ="Images/Search.png" width="60px" height="60px"  > </button>
+            <input type="text" placeholder="Enter city name" spellcheck="false" id="search-input">
+            <button id="search-btn"><img src="images/Search.png" alt="" width="30px" height="30px"></button>
+        </div>
+        <div class="error">
+            <p id="error-message">Invalid city name</p>
         </div>
         <div class="weather">
-            <img src="Images/Raining.png" class="weather-icon" width="150px" height="150px" >
-            <h1 class="temp">22°C</h1>
-            <h2 class="city">New York</h2>
+            <img src="images/Rainy.png" alt="" width="150px" height="150px" class="weather-icon">
+            <h1 id="temperature">22°C</h1>
+            <h2 id="weather-description">Rainy</h2>
+            <div class="city" id="city-name" font-size="40px">New York</div>
             <div class="details">
                 <div class="col">
-                    <img src="Images/Humid.png" class="humidity-icon" width="150px" height="150px" >
+                    <img src="images/Humid.png" alt="" width="40px" height="40px">
                     <div>
-                        <p class="humidity">50%</p>
-                        <p>Humidity</p>
+                        <p class="humidity">Humidity</p>
+                        <p id="humidity-value">60%</p>
                     </div>
                 </div>
                 <div class="col">
-                    <img src="Images/Windy.png" class="humidity-icon" width="150px" height="150px" >
+                    <img src="images/Windy.png" alt="" width="40px" height="40px">
                     <div>
-                        <p class="Wind">15 Km/h</p>
-                        <p>Wind Speed</p>
+                        <p class="windy">Wind Speed</p>
+                        <p id="wind-speed-value">6km/h</p>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-    
+
+    <script>
+        const apiKey = "d252fb0307279eb27800e218c93f1c76";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric";
+        const searchInput = document.getElementById("search-input");
+        const searchBtn = document.getElementById("search-btn");
+        const weatherIcon = document.querySelector(".weather-icon");
+        const errorElement = document.getElementById("error-message");
+        const temperatureElement = document.getElementById("temperature");
+        const weatherDescriptionElement = document.getElementById("weather-description");
+        const cityNameElement = document.getElementById("city-name");
+        const humidityValueElement = document.getElementById("humidity-value");
+        const windSpeedValueElement = document.getElementById("wind-speed-value");
+
+        searchBtn.addEventListener("click", () => {
+            const city = searchInput.value.trim();
+            if (city) {
+                fetch(`${apiUrl}&q=${city}&appid=${apiKey}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.cod === "404") {
+                            errorElement.style.display = "block";
+                            errorElement.textContent = "City not found";
+                        } else {
+                            errorElement.style.display = "none";
+                            temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
+                            weatherDescriptionElement.textContent = data.weather[0].description;
+                            cityNameElement.textContent = data.name;
+                            humidityValueElement.textContent = `${data.main.humidity}%`;
+                            windSpeedValueElement.textContent = `${data.wind.speed} km/h`;
+                            const weatherIconUrl = `images/${getWeatherIcon(data.weather[0].icon)}.png`;
+                            weatherIcon.src = weatherIconUrl;
+
+                            if(data.weather[0].main == "Clouds"){
+                                weatherIcon.src = "images/Cloudy.png";
+                            }
+                            else if(data.weather[0].main == "Clear"){
+                                weatherIcon.src = "images/Sunny.png";
+                            }
+                            else if(data.weather[0].main == "Rain"){
+                                weatherIcon.src = "images/Rainy.png";
+                            }
+                            else if(data.weather[0].main == "Drizzle"){
+                                weatherIcon.src = "images/Drizzle.png";
+                            }
+                            else if(data.weather[0].main == "Mist"){
+                                weatherIcon.src = "images/Mist.png";
+                            }   
+                            else if(data.weather[0].main == "Snow"){
+                                weatherIcon.src = "images/Snowy.png";
+                            }
+                            else{
+                                weatherIcon.src = "images/Cloudy.png";
+                            }
+                            document.querySelector(".error").style.display = "none";
+                            document.querySelector(".weather").style.display = "block";
+                            }
+                        })
+                        .catch(error => console.error(error));
+            }   
+            else {
+                errorElement.style.display = "block";
+                errorElement.textContent = "Please enter a city name";
+            }
+        });
+
+        function getWeatherIcon(iconCode) {
+            switch (iconCode) {
+                case "01d":
+                case "01n":
+                    return "Sunny";
+                case "02d":
+                case "02n":
+                    return "PartlyCloudy";
+                case "03d":
+                case "03n":
+                    return "Cloudy";
+                case "04d":
+                case "04n":
+                    return "Overcast";
+                case "09d":
+                case "09n":
+                    return "Rainy";
+                case "10d":
+                case "10n":
+                    return "Thunderstorm";
+                case "11d":
+                case "11n":
+                    return "Drizzle";
+                case "13d":
+                case "13n":
+                    return "Snowy";
+                default:
+                    return "Unknown";
+            }
+        }
+    </script>
 </body>
 </html>
