@@ -63,7 +63,6 @@
 - **API Key**: Sign up at [OpenWeatherMap](https://openweathermap.org/) to get your free API key.
 - Update the `apiKey` variable in the JavaScript file:
   ```javascript
-  const apiKey = "YOUR_API_KEY";
   ```
 
 ---
@@ -79,7 +78,7 @@
 
 ### 💻 Developed By:
 Piyush Dawkhare
-(https://github.com/your-username)
+(https://github.com/INDJokerGamma)
 
 Enjoy using **SKY** for your daily weather updates! 🌦️
 
